@@ -16,13 +16,13 @@ $e = &$modx->event;
 
 switch ($e->name) {
     case 'OnWebPageInit': {
-    include 'assets/plugins/customizer/customizer.php';
-      
-    $customizer = new Customizer($modx);
-    $customizer->registerPlaceholders();
+        include 'assets/plugins/customizer/customizer.php';
+          
+        $customizer = new Customizer($modx);
+        $customizer->registerPlaceholders();
+            
+        $modx->regClientHTMLBlock('<iframe class="customizer-panel customizer-opened" src="/assets/plugins/customizer/router.php" style="position: fixed; width: 600px; height: 100%; border: 0; top: 0; bottom: 0; left: 0"></iframe>');
         
-    $modx->regClientHTMLBlock('<iframe class="customizer-panel customizer-opened" src="/assets/plugins/customizer/router.php" style="position: fixed; width: 600px; height: 100%; border: 0; top: 0; bottom: 0; left: 0"></iframe>');
-    
-    return;
+        return;
     }
 }
