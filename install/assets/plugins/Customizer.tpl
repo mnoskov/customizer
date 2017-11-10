@@ -7,7 +7,6 @@
  * @category    plugin
  * @version     1.0.0
  * @author      mnoskov
- * @internal    @properties &tabName=Tab name;text;Page Builder &addType=Add type;menu;dropdown,icons,images;dropdown &placement=Placement;menu;content,tab;tab
  * @internal    @events OnWebPageInit
  * @internal    @modx_category Manager and Admin
  * @internal    @installset base,sample
