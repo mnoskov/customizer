@@ -1,0 +1,49 @@
+html, body { height: 100vh; padding: 0; margin: 0; font: 14px/1.4 sans-serif; background: transparent; }
+.panel-body { background: #eee; height: 100vh; margin-right: 40px; border-right: 1px solid #ccc; box-shadow: 0 0 40px rgba(0,0,0,0.1); padding: 5px 8px; }
+.panel-trigger { position: absolute; top: 0; right: 0; background: #eee; color: #333; height: 40px; line-height: 40px; width: 150px; text-align: center; transform: rotate(-90deg); transform-origin: 100% 100%; margin-right: 1px; border: 1px solid #ccc; border-width: 0 1px 1px; border-radius: 0 0 3px 3px; cursor: pointer; font-weight: bold; font-size: 17px; }
+.btn-save { background: #107bb1; color: #fff; margin: 9px 1px 0 0; padding: 0.3em 0.6em; }
+
+.tabs { width: 99px; float: left; position: relative; }
+.tabs .tab { min-height: 50px; line-height: 1.1; cursor: pointer; padding: 0 10px; border: 1px solid transparent; border-width: 1px 0 1px 2px; width: 100px; }
+.tabs .tab:before { content: ''; display: inline-block; vertical-align: middle; height: 60px; width: 0; }
+.tabs .tab span { max-width: 79px; display: inline-block; vertical-align: middle; }
+.tabs .tab.active { background: #fff; cursor: default; border-color: #e8e8e8; border-left-color: #555; }
+
+.tab-box { display: none; }
+.tab-box.active { display: block; }
+
+.scrollable { margin-left: 99px; background: #fff; border: 1px solid #e8e8e8; height: calc(100vh - 50px); overflow-y: auto; }
+.scrollable .settings { padding: 10px 15px; }
+
+.field-group { margin: 0 0 20px; }
+.field-group .field-title { margin-bottom: 10px; }
+
+.color-selector .color { display: inline-block; vertical-align: top; cursor: pointer; border: 1px solid #eee; padding: 2px; margin: 0 0 4px; border-radius: 2px; }
+.color-selector .color div { width: 30px; height: 30px; border-radius: 1px; }
+.color-selector .color-select { display: inline-block; vertical-align: top; cursor: pointer; border: 1px solid #eee; padding: 2px; margin: 0 0 4px; border-radius: 2px; width: 36px; height: 36px; }
+.color-selector .color-select div { width: 30px; height: 30px; border-radius: 1px; background: #ccc; position: relative; overflow: hidden; }
+.color-selector .color-select div:after { width: 30px; height: 30px; content: ''; position: absolute; background: url(../images/icons/pipette.png) 25% 23% no-repeat #fff; background-size: 15px; right: -10px; bottom: -10px; border-radius: 50%; }
+.color-selector .active { border-color: #666; box-shadow: 0 0 20px rgba(0,0,0,0.3); }
+
+.toggle-group label { cursor: pointer; margin: 0; }
+.toggle-group input { display: none; }
+.toggle-group span { display: inline-block; vertical-align: middle; }
+.toggle-group .toggler { width: 32px; background: #ccc; border-radius: 50px; box-shadow: 5px 5px 10px rgba(0,0,0,0.17) inset; padding: 1px; margin-right: 5px; }
+.toggle-group .toggler:before { content: ''; display: block; width: 14px; height: 14px; border-radius: 50%; background: #fff; background: linear-gradient(to bottom, #fff, #eee); }
+.toggle-group input:checked + .toggler { background: #48a216; }
+.toggle-group input:checked + .toggler:before { margin-left: auto; }
+
+.radio-group label { margin: 0 5px 5px 0; }
+.radio-group input { display: none; }
+.radio-group label span { display: inline-block; vertical-align: top; border: 1px solid #ccc; padding: 5px 10px; border-radius: 2px; cursor: pointer; }
+.radio-group label input:checked + span { background: #107bb1; border-color: #107bb1; color: #fff; cursor: default; }
+
+.images-group label { margin: 0 5px 5px 0; max-width: 100%; }
+.images-group input { display: none; }
+.images-group label span { display: inline-block; vertical-align: top; border: 1px solid #ccc; padding: 3px; border-radius: 2px; cursor: pointer; max-width: 100%; }
+.images-group label span img { max-width: 100%; border-radius: 2px; }
+.images-group label input:checked + span { border-color: #666; background: #eee; box-shadow: 0 0 20px rgba(0,0,0,0.3); cursor: default; }
+
+
+
+
