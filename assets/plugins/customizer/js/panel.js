@@ -15,7 +15,7 @@ $(function() {
     $('.btn-save').click(function(e) {
         e.preventDefault();
         
-        $.post('/assets/plugins/customizer/router.php', $('.settings > form').serialize() + '&action=save', function(response) {
+        $.post('/assets/plugins/customizer/router.php', $('.settings > form').serialize() + '&action=save&path=' + panel_options.path, function(response) {
             window.parent.location.reload();
         });
     });

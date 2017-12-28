@@ -6,11 +6,36 @@ class Customizer
 
     private $modx;
 
+    private $base;
+    private $path = 'config/values.json';
+
     public function __construct($modx = null)
     {
+        $this->base = realpath(__DIR__ . '/../../../');
+
         if ($modx) {
             $this->modx = $modx;
         }
+    }
+
+    public function setPath($path) {
+        if (is_string($path)) {
+            $path = $this->base . '/' . $path;
+            $info = pathinfo($path);
+
+            if (!empty($info['dirname']) && is_dir($info['dirname']) && is_writable($info['dirname'])) {
+                $path = realpath($info['dirname']);
+
+                if ($path !== false) {
+                    $path = str_replace($this->base, '', $path);
+                    $this->path = trim($path . '/' . $info['basename'], '/');
+                }
+            }
+        }
+    }
+
+    public function getPath() {
+        return $this->base . '/' . $this->path;
     }
 
     public function renderTemplate(string $template, array $data) : string
@@ -37,9 +62,11 @@ class Customizer
     public function loadValues() : array
     {
         $values = null;
+
+        $path = $this->getPath();
         
-        if (is_readable('config/values.json')) {
-            $values = @json_decode(file_get_contents('config/values.json'), true);
+        if (is_readable($path)) {
+            $values = @json_decode(file_get_contents($path), true);
         }
 
         if ($values === null) {
@@ -76,6 +103,12 @@ class Customizer
         $settings = $this->getSettings();
         $values = [];
 
+        $path = $this->getPath();
+
+        if (is_readable($path)) {
+            $values = @json_decode(file_get_contents($path), true);
+        }
+
         foreach ($settings['tabs'] as $tab) {
             foreach ($tab['fields'] as $field) {
                 $name = $field['name'];
@@ -88,7 +121,7 @@ class Customizer
             }
         }
 
-        file_put_contents('config/values.json', json_encode($values, JSON_PRETTY_PRINT));
+        file_put_contents($path, json_encode($values, JSON_PRETTY_PRINT));
 
         return json_encode(['status' => 'success']);
     }
