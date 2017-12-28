@@ -76,3 +76,13 @@ $(function() {
         $(this).find('label input').after('<span class="toggler"/>');
     });
 });
+
+!function() {
+    var stamp = '?' + Math.random();
+
+    $(window.parent.document).find('head > link[rel="stylesheet"]').each(function() {
+        if (!this.href.match(/^(https?:)?\/\//) || this.href.match(/\.css$/)) {
+            this.href += stamp;
+        }
+    });
+}();
