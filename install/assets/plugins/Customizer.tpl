@@ -18,7 +18,13 @@ $e = &$modx->event;
 switch ($e->name) {
     case 'OnWebPageInit': {
         include 'assets/plugins/customizer/customizer.php';
+
         $customizer = new Customizer($modx);
+
+        if (!empty($params['path'])) {
+            $customizer->setPath($params['path']);
+        }
+
         $customizer->registerPlaceholders();
         return;
     }
