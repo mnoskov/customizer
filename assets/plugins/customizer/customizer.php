@@ -109,6 +109,8 @@ class Customizer
             $values = @json_decode(file_get_contents($path), true);
         }
 
+        $values['stamp'] = time();
+
         foreach ($settings['tabs'] as $tab) {
             foreach ($tab['fields'] as $field) {
                 $name = $field['name'];
