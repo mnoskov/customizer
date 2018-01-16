@@ -29,32 +29,46 @@ $(function() {
     $('.predefined-colors').remove();
 
     $('.color-selector').each(function() {
-        $(this).append(colors);
+        var $self = $(this);
 
-        var color   = $(this).prev('input').val(),
-            $active = $(this).children('[data-color="' + color + '"]'),
-            $custom = $(this).children('.color-select');
+        $self.append(colors);
+
+        var $input  = $self.parent().children('input[type="hidden"]'),
+            color   = $input.val(),
+            $active = $self.children('[data-color="' + color + '"]'),
+            $custom = $self.children('.color-select'),
+            $group  = $self.closest('.field-group');
 
         if ($active.length) {
             $active.addClass('active');
         } else {
-            $custom.addClass('active').children().css('background', color);
+            if (color.match(/^#/)) {
+                $custom.addClass('active').children().css('background', color);
+            }
         }
 
-        $(this).children('.color').click(function(e) {
-            e.preventDefault();
-            $(this).addClass('active').siblings('.active').removeClass('active');
-            $(this).parent().prev('input').val($(this).attr('data-color'));
-        });
+        !function($element, $group, $input) {
+            $self.children('.color').click(function(e) {
+                e.preventDefault();
+                $(this).addClass('active').siblings('.active').removeClass('active');
+                $input.val($(this).attr('data-color'));
 
-        !function($element) {
+                $group.find('[type="radio"]').each(function() {
+                    this.checked = false;
+                });
+            });
+
             $element
                 .on('beforeShow.spectrum', function(e, color) {
                     var color = $element.children().css('background-color');
 
                     $element.addClass('active').siblings('.active').removeClass('active');
-                    $element.parent().prev('input').val(color);
+                    $input.val(color);
                     $(this).spectrum('set', color);
+
+                    $group.find('[type="radio"]').each(function() {
+                        this.checked = false;
+                    });
                 })
                 .spectrum({
                     allowEmpty: false,
@@ -66,10 +80,18 @@ $(function() {
                     move: function(color) {
                         color = color.toHexString();
                         $element.children().css('background-color', color);
-                        $element.parent().prev('input').val(color);
+                        $input.val(color);
                     }
                 });
-        }($custom);
+        }($custom, $group, $input);
+    });
+
+    $('.radio-group.color-group').each(function() {
+        var $group = $(this);
+
+        $(this).find('[type="radio"]').change(function() {
+            $group.children('.color-selector').children('.active').removeClass('active');
+        });
     });
 
     $('.toggle-group').each(function() {

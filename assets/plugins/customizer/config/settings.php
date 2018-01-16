@@ -30,7 +30,7 @@ return [
                         'images/head2.png',
                         'images/head3.png',
                     ],
-                ]
+                ], 
             ]
         ], [
             'title'  => 'Главная страница',
@@ -41,8 +41,11 @@ return [
                 [
                     'name'    => 'menu_background',
                     'title'   => 'Фон меню в шапке',
-                    'type'    => 'radio',
-                    'values'  => ['@primary_color' => 'Основной цвет', '@buttons_color' => 'Цвет кнопок', '#fff' => 'Белый', '#777' => 'Темный'],
+                    'type'    => 'radio_and_color',
+                    'values'  => [
+                        '@primary_color' => 'Основной цвет',
+                        '@buttons_color' => 'Цвет кнопок',
+                    ],
                     'default' => '@primary_color',
                 ],
             ],
