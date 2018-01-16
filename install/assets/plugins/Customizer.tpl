@@ -5,7 +5,7 @@
  * Creates panel for customize site theme
  *
  * @category    plugin
- * @version     1.0.0
+ * @version     1.1.0
  * @author      mnoskov
  * @internal    @properties &path=Path to json with variables;text;/assets/templates/default/css/variables.json &onlyAuthorized=Show panel for authorized user only;menu;true,false;true
  * @internal    @events OnWebPageInit,OnWebPagePrerender
