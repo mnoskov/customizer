@@ -78,7 +78,12 @@ $(function() {
                     showButtons: false,
                     preferredFormat: 'hex',
                     move: function(color) {
-                        color = color.toHexString();
+                        if (color.getAlpha() < 1) {
+                            color = color.toRgbString();
+                        } else {
+                            color = color.toHexString();
+                        }
+
                         $element.children().css('background-color', color);
                         $input.val(color);
                     }
