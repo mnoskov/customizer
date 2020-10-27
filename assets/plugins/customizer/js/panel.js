@@ -14,7 +14,7 @@ $(function() {
 
     $('.btn-save').click(function(e) {
         e.preventDefault();
-        
+
         $.post('/assets/plugins/customizer/router.php', $('.settings > form').serialize() + '&action=save&path=' + panel_options.path, function(response) {
             window.parent.location.reload();
         });
@@ -42,7 +42,7 @@ $(function() {
         if ($active.length) {
             $active.addClass('active');
         } else {
-            if (color.match(/^#/)) {
+            if (color.match(/^#/) || color.match(/rgba?\([\d\., ]+\)/)) {
                 $custom.addClass('active').children().css('background', color);
             }
         }
@@ -60,7 +60,7 @@ $(function() {
 
             $element
                 .on('beforeShow.spectrum', function(e, color) {
-                    var color = $element.children().css('background-color');
+                    color = $element.children().css('background-color');
 
                     $element.addClass('active').siblings('.active').removeClass('active');
                     $input.val(color);
@@ -78,14 +78,9 @@ $(function() {
                     showButtons: false,
                     preferredFormat: 'hex',
                     move: function(color) {
-                        if (color.getAlpha() < 1) {
-                            color = color.toRgbString();
-                        } else {
-                            color = color.toHexString();
-                        }
-
-                        $element.children().css('background-color', color);
-                        $input.val(color);
+                        var strColor = color.getAlpha() < 1 ? color.toRgbString() : color.toHexString();
+                        $element.children().css('background-color', strColor);
+                        $input.val(strColor);
                     }
                 });
         }($custom, $group, $input);
